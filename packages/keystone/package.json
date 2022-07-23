@@ -5,6 +5,11 @@
   "main": "./dist/keystone-wasm.umd.cjs",
   "module": "dist/keystone-wasm.js",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CzBiX/disasm-web.git",
+    "directory": "packages/keystone"
+  },
   "exports": {
     ".": {
       "import": "./dist/keystone-wasm.js",

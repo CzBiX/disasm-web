@@ -5,6 +5,11 @@
   "main": "./dist/capstone-wasm.umd.cjs",
   "module": "dist/capstone-wasm.js",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CzBiX/disasm-web.git",
+    "directory": "packages/capstone"
+  },
   "exports": {
     ".": {
       "import": "./dist/capstone-wasm.js",
