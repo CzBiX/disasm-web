@@ -1,0 +1,8 @@
+[submodule "packages/capstone/native"]
+	path = packages/capstone/native
+	url = https://github.com/capstone-engine/capstone.git
+	shallow = true
+[submodule "packages/keystone/native"]
+	path = packages/keystone/native
+	url = https://github.com/keystone-engine/keystone.git
+	shallow = true

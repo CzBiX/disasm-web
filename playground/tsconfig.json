@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": [
+      "vite/client",
+      "vite-plugin-pwa/client",
+    ],
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "preserve",
+  },
+  "include": [
+    "src",
+    "test",
+  ],
+}
