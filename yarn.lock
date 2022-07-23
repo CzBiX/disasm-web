@@ -1319,7 +1319,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/types@npm:^1.1.0":
+"@iconify-json/carbon@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@iconify-json/carbon@npm:1.1.6"
+  dependencies:
+    "@iconify/types": "*"
+  checksum: cba724240ac6a054e4931bae39d55a4db2ea10bdac0faa953b6220313130a4bfdfa590082c9d981fab115eb66fce30255c653edc8b6bbce4ef176fb0134d5001
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:*, @iconify/types@npm:^1.1.0":
   version: 1.1.0
   resolution: "@iconify/types@npm:1.1.0"
   checksum: beffcdbf14e879ff74e79ac29ea0f4f4874f9df632f1994d97395b3f05cbeebaf10f1abc73cf850dc7444924cd57ed92e0e2ca55bacfe3374eff7542d489fbd0
@@ -1771,6 +1780,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@unocss/core@npm:0.44.5":
+  version: 0.44.5
+  resolution: "@unocss/core@npm:0.44.5"
+  checksum: a2e481b10f5ff99fbec061a9fe576ad6d14707dab206228e108dc363b414b37ca743d1c3994b0f68a22eafc8bc50022fece4e2ff093f2fdc0319265208dab7e3
+  languageName: node
+  linkType: hard
+
 "@unocss/inspector@npm:0.44.3":
   version: 0.44.3
   resolution: "@unocss/inspector@npm:0.44.3"
@@ -1798,6 +1814,17 @@ __metadata:
     "@unocss/core": 0.44.3
     ohmyfetch: ^0.4.18
   checksum: 6e22f5c060911a4de4fc729eca1cdf734a6e8ed68433f2010b2f94269fb0c680f29452085307cbffabaedefccf06a1127144e126e7b015f0bf7353fcd5b0b62c
+  languageName: node
+  linkType: hard
+
+"@unocss/preset-icons@npm:^0.44.5":
+  version: 0.44.5
+  resolution: "@unocss/preset-icons@npm:0.44.5"
+  dependencies:
+    "@iconify/utils": ^1.0.33
+    "@unocss/core": 0.44.5
+    ohmyfetch: ^0.4.18
+  checksum: 89e8ea8f54f9db98a587fa86ffd43001936f993d989e4ef09cdf1ac5e4d2624249521e47a061d10aa284230449655eb4185a130ab5d8a28618761cff98472c27
   languageName: node
   linkType: hard
 
@@ -5101,7 +5128,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "playground@workspace:playground"
   dependencies:
+    "@iconify-json/carbon": ^1.1.6
     "@types/node": ^18.0.3
+    "@unocss/preset-icons": ^0.44.5
     "@unocss/reset": ^0.44.3
     "@unocss/transformer-variant-group": ^0.44.3
     "@vitejs/plugin-vue": ^3.0.0

@@ -5,6 +5,7 @@ import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import Unocss from 'unocss/vite'
+import { presetIcons, presetWind } from 'unocss'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 
 export default defineConfig({
@@ -29,6 +30,14 @@ export default defineConfig({
       dts: true,
     }),
     Unocss({
+      presets: [
+        presetWind(),
+        presetIcons({
+          extraProperties: {
+            'color': 'currentColor',
+          }
+        }),
+      ],
       transformers: [
         transformerVariantGroup(),
       ],

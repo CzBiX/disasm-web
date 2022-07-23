@@ -257,5 +257,14 @@ const EXTRA_MODES = [
         </label>
       </template>
     </div>
+    <div class="ml-auto flex">
+      <a
+        href="https://github.com/CzBiX/disasm-web"
+        target="_blank"
+        class="p-3 i-carbon:logo-github"
+      >
+        GitHub
+      </a>
+    </div>
   </div>
 </template>
