@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <div class="overflow-auto">
-    <ol>
+    <ol class="children:flex">
       <li
         v-for="(insn, index) of value"
         :key="index"
