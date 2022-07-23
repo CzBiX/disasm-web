@@ -12,7 +12,7 @@ import { useLocalStorage, watchThrottled } from '@vueuse/core'
 import { ArchMode, ExtraModeKey, Options } from './components/Toolbar.vue'
 import Textarea from './components/Textarea.vue'
 import { parseHexString, toHexString } from './utils/hex-string'
-import DiasmResult from './components/DiasmResult.vue'
+import DisasmResult from './components/DisasmResult.vue'
 import AsmResult from './components/AsmResult.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
 
@@ -251,7 +251,7 @@ onBeforeMount(async () => {
         :address="options.address"
         :value="asmResult!"
       />
-      <DiasmResult
+      <DisasmResult
         v-else
         :value="disasmResult"
       />
