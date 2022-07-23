@@ -1,0 +1,32 @@
+name: Deploy to pages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: 'yarn'
+    - name: Install dependencies
+      run: yarn
+    - name: Build
+      run: yarn workspace playground build
+    - name: Publish
+      run: |
+        cd playground/public
+        git init
+        git config user.name github-actions
+        git config user.email ${{ github.actor }}@users.noreply.github.com
+        git remote add origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+        git checkout -b gh-pages
+        git add --all
+        git commit -m "Publish"
+        git push origin gh-pages -f
