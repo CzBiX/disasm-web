@@ -2542,10 +2542,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"capstone-wasm@npm:1.0.0":
-  version: 1.0.0
-  resolution: "capstone-wasm@npm:1.0.0"
-  checksum: dfe24b067ce7f13ecd3c1ac3ccc6f3fd2373f51b22a966e0635e3b7c3f7a0cf6b4de7252b0b210599ff32c4cafc7fd0ec4eb0538f80e91f5babcf563d104faa9
+"capstone-wasm@npm:1.0.1":
+  version: 1.0.1
+  resolution: "capstone-wasm@npm:1.0.1"
+  checksum: dd4dab8e0fb1b5239678db17124f67913243b0d18c13dc60037ced8cd05bcb95a8d4f3a3c1c812ccc09895eac7423ca04f8a948c1c3720c9a312e5d376c6b433
   languageName: node
   linkType: hard
 
@@ -4409,10 +4409,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keystone-wasm@npm:1.0.2":
-  version: 1.0.2
-  resolution: "keystone-wasm@npm:1.0.2"
-  checksum: 2571c28aaf4ee9273db36ac0b77bef413743b90dcad609288af0641081959f2ab8505af67ebd5ed56de650022c6a8f2ffaa728948984a95de620d85da50968cd
+"keystone-wasm@npm:1.0.3":
+  version: 1.0.3
+  resolution: "keystone-wasm@npm:1.0.3"
+  checksum: 4455184172d91fa98e6b259531c1b110679926105736109e8537bf6792319594593df4a1c5a8fb7bd08553fb7f1f5ab1867c1b9e817d3403fa3ad867ef816e8d
   languageName: node
   linkType: hard
 
@@ -5135,10 +5135,10 @@ __metadata:
     "@unocss/transformer-variant-group": ^0.44.3
     "@vitejs/plugin-vue": ^3.0.0
     "@vueuse/core": ^8.9.4
-    capstone-wasm: 1.0.0
+    capstone-wasm: 1.0.1
     eslint: ^8.19.0
     eslint-plugin-vue: ^9.2.0
-    keystone-wasm: 1.0.2
+    keystone-wasm: 1.0.3
     tsup: ^6.1.3
     typescript: ^4.7.4
     unocss: ^0.44.1

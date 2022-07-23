@@ -1,6 +1,6 @@
 {
   "name": "keystone-wasm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "main": "./dist/keystone-wasm.umd.cjs",
   "module": "dist/keystone-wasm.js",
