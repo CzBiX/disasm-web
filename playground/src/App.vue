@@ -11,7 +11,7 @@ import { onBeforeMount, ref, watch } from 'vue'
 import { useLocalStorage, watchThrottled } from '@vueuse/core'
 import { ArchMode, ExtraModeKey, Options } from './components/Toolbar.vue'
 import Textarea from './components/Textarea.vue'
-import { parseHexString, toHexString } from './utils/hex-string'
+import { parseHexString } from './utils/hex-string'
 import DisasmResult from './components/DisasmResult.vue'
 import AsmResult from './components/AsmResult.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
@@ -23,12 +23,12 @@ const DEFAULT_OPTIONS: Readonly<Options> = Object.freeze({
   } as ArchMode,
   extraModes: [],
   address: 0x1000,
+  asmMode: false,
 })
 
 const options = useLocalStorage('options', {
   ...DEFAULT_OPTIONS,
 })
-const asmMode = ref(false)
 
 let capstone: Capstone
 let keystone: Keystone
@@ -39,6 +39,8 @@ const statusStr = ref<string>('Loading engine...')
 
 const disasmResult = ref<Insn[]>([])
 const asmResult = ref<Uint8Array>(new Uint8Array())
+const asmPanel = ref<typeof AsmResult>()
+const disasmPanel = ref<typeof DisasmResult>()
 
 function disasm() {
   const bytes = parseHexString(content.value)
@@ -77,7 +79,7 @@ function updateResult() {
   }
 
   statusStr.value = ''
-  if (asmMode.value) {
+  if (options.value.asmMode) {
     asm()
   } else {
     disasm()
@@ -188,13 +190,10 @@ watch(options, (newOptions, oldOptions) => {
   updateEngineOptions('capstone', getCapstoneOptions, newOptions, oldOptions)
   updateEngineOptions('keystone', getKeystoneOptions, newOptions, oldOptions)
 
-  updateResult()
-})
-watch(asmMode, (value) => {
-  if (value) {
-    content.value = disasmResult.value.map((insn) => `${insn.mnemonic} ${insn.opStr}`).join('\n')
+  if (newOptions.asmMode !== oldOptions.asmMode) {
+    content.value = newOptions.asmMode ? disasmPanel.value!.asmContent : asmPanel.value!.hexContent
   } else {
-    content.value = toHexString(asmResult.value)
+    updateResult()
   }
 })
 
@@ -231,7 +230,6 @@ onBeforeMount(async () => {
   <main class="flex flex-col h-screen">
     <Toolbar
       v-model="options"
-      v-model:asm-mode="asmMode"
       :disabled="!loaded"
     />
     <div
@@ -247,12 +245,14 @@ onBeforeMount(async () => {
       <Textarea v-model="content" />
 
       <AsmResult
-        v-if="asmMode"
+        v-if="options.asmMode"
+        ref="asmPanel"
         :address="options.address"
-        :value="asmResult!"
+        :value="asmResult"
       />
       <DisasmResult
         v-else
+        ref="disasmPanel"
         :value="disasmResult"
       />
     </div>

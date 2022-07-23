@@ -34,8 +34,8 @@ export default defineConfig({
         presetWind(),
         presetIcons({
           extraProperties: {
-            'color': 'currentColor',
-          }
+            color: 'currentColor',
+          },
         }),
       ],
       transformers: [

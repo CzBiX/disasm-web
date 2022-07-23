@@ -1,7 +1,6 @@
 <!-- eslint-disable no-bitwise -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useVModel } from '@vueuse/core'
 import Switch from './ui/Switch.vue'
 
 export type ArchMode = {
@@ -15,26 +14,21 @@ export type ArchMode = {
   mode: '16' | '32' | '64'
 }
 
-export
-interface Options {
+export interface Options {
   archMode: ArchMode
   extraModes: ExtraModeKey[]
   address: number
+  asmMode: boolean
 }
 
 const props = defineProps<{
   modelValue: Options
-  asmMode: boolean
   disabled: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Options): void
-  (e: 'update:asmMode', value: boolean): void
 }>()
-
-const selected = useVModel(props, 'modelValue', emit)
-const asmMode = useVModel(props, 'asmMode', emit)
 
 const ALL_OPTIONS: {
   name: string
@@ -94,7 +88,7 @@ const ALL_OPTIONS: {
 ]
 
 const allowedExtraModes = computed(() => {
-  const { archMode } = selected.value
+  const { archMode } = props.modelValue
 
   const modes = []
   switch (archMode.arch) {
@@ -112,6 +106,18 @@ const allowedExtraModes = computed(() => {
   return modes
 })
 
+const asmMode = computed({
+  get() {
+    return props.modelValue.asmMode
+  },
+  set(v) {
+    emit('update:modelValue', {
+      ...props.modelValue,
+      asmMode: v,
+    })
+  },
+})
+
 function getSelectedArch(arch: string) {
   return ALL_OPTIONS.find((a) => a.arch === arch)!
 }
@@ -120,47 +126,47 @@ function setArch(event: Event) {
   const arch = (event.target as HTMLSelectElement).value as ArchMode['arch']
   const targetArch = getSelectedArch(arch)
   const { mode } = targetArch.modes[targetArch.defaultMode || 0]
-  const extraModes = allowedExtraModes.value.filter((m) => selected.value.extraModes.includes(m))
+  const extraModes = allowedExtraModes.value.filter((m) => props.modelValue.extraModes.includes(m))
 
-  selected.value = {
-    ...selected.value,
+  emit('update:modelValue', {
+    ...props.modelValue,
     archMode: {
       arch,
       mode,
     } as ArchMode,
     extraModes,
-  }
+  })
 }
 
 function getExtraMode(mode: ExtraModeKey) {
-  return selected.value.extraModes.includes(mode)
+  return props.modelValue.extraModes.includes(mode)
 }
 
 function setExtraMode(mode: ExtraModeKey, value: boolean) {
-  selected.value = {
-    ...selected.value,
-    extraModes: value ? [...selected.value.extraModes, mode] : selected.value.extraModes.filter((m) => m !== mode),
-  }
+  emit('update:modelValue', {
+    ...props.modelValue,
+    extraModes: value ? [...props.modelValue.extraModes, mode] : props.modelValue.extraModes.filter((m) => m !== mode),
+  })
 }
 
 function setMode(event: Event) {
   const mode = (event.target as HTMLSelectElement).value as ArchMode['mode']
-  selected.value = {
-    ...selected.value,
+  emit('update:modelValue', {
+    ...props.modelValue,
     archMode: {
-      ...selected.value.archMode,
+      ...props.modelValue.archMode,
       mode,
     } as ArchMode,
-  }
+  })
 }
 
 function setAddress(event: Event) {
   // eslint-disable-next-line radix
   const address = parseInt((event.target as HTMLInputElement).value)
-  selected.value = {
-    ...selected.value,
+  emit('update:modelValue', {
+    ...props.modelValue,
     address: Number.isNaN(address) ? 0x1000 : address,
-  }
+  })
 }
 
 function formatHex(n: number) {
@@ -204,7 +210,7 @@ const EXTRA_MODES = [
       <label>
         Arch:
         <select
-          :value="selected.archMode.arch"
+          :value="modelValue.archMode.arch"
           :disabled="disabled"
           @input="setArch"
         >
@@ -220,12 +226,12 @@ const EXTRA_MODES = [
       <label>
         Mode:
         <select
-          :value="selected.archMode.mode"
+          :value="modelValue.archMode.mode"
           :disabled="disabled"
           @input="setMode"
         >
           <option
-            v-for="mode in getSelectedArch(selected.archMode.arch).modes"
+            v-for="mode in getSelectedArch(modelValue.archMode.arch).modes"
             :key="mode.mode"
             :value="mode.mode"
           >
@@ -237,7 +243,7 @@ const EXTRA_MODES = [
         Address:
         <input
           :disabled="disabled"
-          :value="formatHex(selected.address)"
+          :value="formatHex(modelValue.address)"
           class="w-12ch text-right"
           @change="setAddress"
         >

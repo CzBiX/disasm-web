@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { toHexStringWithPrefix, toHexString } from '../utils/hex-string'
+import PanelToolbar from './ui/PanelToolbar.vue'
 
 const props = defineProps<{
   value: Uint8Array,
@@ -22,10 +24,20 @@ function* getHeaders() {
     yield i
   }
 }
+
+const hexContent = computed(() => [...getBytes()].map((bytes) => toHexString(bytes.bytes)).join('\n'))
+
+function handleCopyHex() {
+  navigator.clipboard.writeText(hexContent.value)
+}
+
+defineExpose({
+  hexContent,
+})
 </script>
 
 <template>
-  <div class="overflow-auto">
+  <div class="overflow-auto relative">
     <div class="pl-10ch sticky top-0 bg-inherit">
       <span
         v-for="i in getHeaders()"
@@ -42,5 +54,12 @@ function* getHeaders() {
         <span class="inline-block mr-2">{{ toHexString(bytesLine.bytes) }}</span>
       </li>
     </ol>
+    <PanelToolbar>
+      <button
+        class="i-carbon:copy"
+        title="Copy Hex"
+        @click="handleCopyHex"
+      />
+    </PanelToolbar>
   </div>
 </template>
