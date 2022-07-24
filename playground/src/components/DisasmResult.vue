@@ -1,35 +1,28 @@
 <script setup lang="ts">
-import type { Insn } from 'capstone-wasm'
 import { computed } from 'vue'
 import { toHexStringWithPrefix, toHexString } from '../utils/hex-string'
 import PanelToolbar from './ui/PanelToolbar.vue'
+import type { Insn } from '../types'
 
 const props = defineProps<{
   value: Insn[]
 }>()
 
+const hexContent = computed(() => props.value.map((insn) => toHexString(insn.bytes)).join('\n'))
+const asmContent = computed(() => props.value.map((insn) => insn.str).join('\n'))
+
 function handleCopyHex() {
-  const text = props.value.map((insn) => toHexString(insn.bytes)).join('\n')
-  navigator.clipboard.writeText(text)
+  navigator.clipboard.writeText(hexContent.value)
 }
-
-function convertInsnToStr(insn: Insn) {
-  const { mnemonic, opStr } = insn
-  if (opStr) {
-    return `${mnemonic} ${opStr}`
-  }
-
-  return mnemonic
-}
-
-const asmContent = computed(() => props.value.map(convertInsnToStr).join('\n'))
-defineExpose({
-  asmContent,
-})
 
 function handleCopyASM() {
   navigator.clipboard.writeText(asmContent.value)
 }
+
+defineExpose({
+  asmContent,
+  hexContent,
+})
 </script>
 
 <template>
@@ -41,7 +34,7 @@ function handleCopyASM() {
       >
         <span class="mr-2 color-neutral-500">{{ toHexStringWithPrefix(insn.address, 8) }}</span>
         <span class="inline-block w-11ch mr-2">{{ toHexString(insn.bytes) }}</span>
-        <span class="color-sky-500">{{ convertInsnToStr(insn) }}</span>
+        <span class="color-sky-500">{{ insn.str }}</span>
       </li>
     </ol>
     <PanelToolbar>

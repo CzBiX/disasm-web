@@ -106,15 +106,19 @@ const allowedExtraModes = computed(() => {
   return modes
 })
 
+function emitUpdate(value: Partial<Options>) {
+  emit('update:modelValue', {
+    ...props.modelValue,
+    ...value,
+  })
+}
+
 const asmMode = computed({
   get() {
     return props.modelValue.asmMode
   },
   set(v) {
-    emit('update:modelValue', {
-      ...props.modelValue,
-      asmMode: v,
-    })
+    emitUpdate({ asmMode: v })
   },
 })
 
@@ -128,8 +132,7 @@ function setArch(event: Event) {
   const { mode } = targetArch.modes[targetArch.defaultMode || 0]
   const extraModes = allowedExtraModes.value.filter((m) => props.modelValue.extraModes.includes(m))
 
-  emit('update:modelValue', {
-    ...props.modelValue,
+  emitUpdate({
     archMode: {
       arch,
       mode,
@@ -143,16 +146,14 @@ function getExtraMode(mode: ExtraModeKey) {
 }
 
 function setExtraMode(mode: ExtraModeKey, value: boolean) {
-  emit('update:modelValue', {
-    ...props.modelValue,
+  emitUpdate({
     extraModes: value ? [...props.modelValue.extraModes, mode] : props.modelValue.extraModes.filter((m) => m !== mode),
   })
 }
 
 function setMode(event: Event) {
   const mode = (event.target as HTMLSelectElement).value as ArchMode['mode']
-  emit('update:modelValue', {
-    ...props.modelValue,
+  emitUpdate({
     archMode: {
       ...props.modelValue.archMode,
       mode,
@@ -163,8 +164,7 @@ function setMode(event: Event) {
 function setAddress(event: Event) {
   // eslint-disable-next-line radix
   const address = parseInt((event.target as HTMLInputElement).value)
-  emit('update:modelValue', {
-    ...props.modelValue,
+  emitUpdate({
     address: Number.isNaN(address) ? 0x1000 : address,
   })
 }

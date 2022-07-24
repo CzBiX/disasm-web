@@ -7,8 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AsmResult: typeof import('./src/components/AsmResult.vue')['default']
     DisasmResult: typeof import('./src/components/DisasmResult.vue')['default']
+    HexResult: typeof import('./src/components/HexResult.vue')['default']
     PanelToolbar: typeof import('./src/components/ui/PanelToolbar.vue')['default']
     ReloadPrompt: typeof import('./src/components/ReloadPrompt.vue')['default']
     Switch: typeof import('./src/components/ui/Switch.vue')['default']

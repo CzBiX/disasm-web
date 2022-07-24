@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable no-bitwise */
 import {
-  Const as CapstoneConst, Capstone, loadCapstone, Insn,
+  Const as CapstoneConst, Capstone, loadCapstone,
 } from 'capstone-wasm'
 import {
   Const as KeystoneConst, Keystone, loadKeystone,
@@ -13,8 +13,8 @@ import { ArchMode, ExtraModeKey, Options } from './components/Toolbar.vue'
 import Textarea from './components/Textarea.vue'
 import { parseHexString } from './utils/hex-string'
 import DisasmResult from './components/DisasmResult.vue'
-import AsmResult from './components/AsmResult.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
+import type { Insn } from './types'
 
 const DEFAULT_OPTIONS: Readonly<Options> = Object.freeze({
   archMode: {
@@ -38,9 +38,15 @@ const content = useLocalStorage('content', '55 8b ec 83 c4 0c c3')
 const statusStr = ref<string>('Loading engine...')
 
 const disasmResult = ref<Insn[]>([])
-const asmResult = ref<Uint8Array>(new Uint8Array())
-const asmPanel = ref<typeof AsmResult>()
 const disasmPanel = ref<typeof DisasmResult>()
+
+function convertInsnToStr(mnemonic: string, opStr: string) {
+  if (opStr) {
+    return `${mnemonic} ${opStr}`
+  }
+
+  return mnemonic
+}
 
 function disasm() {
   const bytes = parseHexString(content.value)
@@ -52,7 +58,11 @@ function disasm() {
   try {
     disasmResult.value = capstone.disasm(bytes, {
       address: options.value.address,
-    })
+    }).map((insn) => ({
+      address: insn.address,
+      bytes: insn.bytes,
+      str: convertInsnToStr(insn.mnemonic, insn.opStr),
+    }))
   } catch (e: any) {
     statusStr.value = e.message
   }
@@ -60,17 +70,36 @@ function disasm() {
 
 function asm() {
   if (content.value.length === 0) {
-    asmResult.value = new Uint8Array()
+    disasmResult.value = []
     return
   }
 
-  try {
-    asmResult.value = keystone.asm(content.value, {
-      address: options.value.address,
-    })
-  } catch (e: any) {
-    statusStr.value = e.message
+  let offset = 0
+  const lines = content.value.split('\n')
+  const insns: Insn[] = Array(lines.length)
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    try {
+      const { address } = options.value
+      const bytes = keystone.asm(line, {
+        address,
+      })
+
+      insns[i] = {
+        address: address + offset,
+        bytes,
+        str: line,
+      }
+      offset += bytes.length
+    } catch (e: any) {
+      statusStr.value = `Line ${i + 1}: ${e.message}`
+      insns.splice(i)
+      break
+    }
   }
+
+  disasmResult.value = insns
 }
 
 function updateResult() {
@@ -191,7 +220,7 @@ watch(options, (newOptions, oldOptions) => {
   updateEngineOptions('keystone', getKeystoneOptions, newOptions, oldOptions)
 
   if (newOptions.asmMode !== oldOptions.asmMode) {
-    content.value = newOptions.asmMode ? disasmPanel.value!.asmContent : asmPanel.value!.hexContent
+    content.value = newOptions.asmMode ? disasmPanel.value!.asmContent : disasmPanel.value!.hexContent
   } else {
     updateResult()
   }
@@ -244,14 +273,7 @@ onBeforeMount(async () => {
     >
       <Textarea v-model="content" />
 
-      <AsmResult
-        v-if="options.asmMode"
-        ref="asmPanel"
-        :address="options.address"
-        :value="asmResult"
-      />
       <DisasmResult
-        v-else
         ref="disasmPanel"
         :value="disasmResult"
       />
