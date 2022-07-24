@@ -3,6 +3,7 @@ name: Deploy to pages
 on:
   push:
     branches: [ master ]
+    paths: [ 'playground/**' ]
 
 jobs:
   build:
