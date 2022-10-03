@@ -15,5 +15,6 @@ const content = useVModel(props, 'modelValue', emit)
   <textarea
     v-model="content"
     class="resize-none scroll-y"
+    spellcheck="false"
   />
 </template>
