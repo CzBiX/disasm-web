@@ -82,12 +82,14 @@ function asm() {
     const line = lines[i]
     try {
       const { address } = options.value
+      const lineAddress = address + offset
+      
       const bytes = keystone.asm(line, {
-        address: address + offset,
+        address: lineAddress,
       })
 
       insns[i] = {
-        address: address + offset,
+        address: lineAddress,
         bytes,
         str: line,
       }
