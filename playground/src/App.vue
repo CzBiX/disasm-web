@@ -83,7 +83,7 @@ function asm() {
     try {
       const { address } = options.value
       const bytes = keystone.asm(line, {
-        address,
+        address: address + offset,
       })
 
       insns[i] = {
