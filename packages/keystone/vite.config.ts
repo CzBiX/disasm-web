@@ -13,5 +13,8 @@ export default defineConfig({
       entry: resolve(__dirname, './src/index.ts'),
       name: 'Keystone',
     },
+    rollupOptions: {
+      external: ['module']
+    }
   },
 })
