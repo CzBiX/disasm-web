@@ -56,12 +56,12 @@ describe('class', () => {
   })
 
   describe('asm', () => {
-    const data = `push ebp
+    it('normal', () => {
+      const data = `push ebp
 mov ebp, esp
 add esp, 0xc
 ret`
 
-    it('normal', () => {
       createKeystone()
 
       expect(keystone.asm(data)).toEqual(Uint8Array.from([
@@ -69,8 +69,29 @@ ret`
       ]))
     })
 
+    it('address', () => {
+      const address = 0x1000
+      const data = `jmp 0x2000`
+
+      createKeystone()
+
+      expect(keystone.asm(data, {address})).toEqual(Uint8Array.from([
+        0xE9, 0xFB, 0x0F, 0x00, 0x00,
+      ]))
+    })
+
+    it('64bit address', () => {
+      const address = 0x4_1234_1234
+      const data = `jmp 0x412342234`
+
+      createKeystone(Const.KS_ARCH_X86, Const.KS_MODE_64)
+
+      expect(keystone.asm(data, {address})).toEqual(Uint8Array.from([
+        0xE9, 0xFB, 0x0F, 0x00, 0x00,
+      ]))
+    })
+
     it('arm', () => {
-      // eslint-disable-next-line @typescript-eslint/no-shadow
       const data = `mov r0, #3
 str r1, [r0]`
 

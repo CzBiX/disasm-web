@@ -114,6 +114,18 @@ describe('class', () => {
       })
     })
 
+    it('64bit address argument', () => {
+      createCapstone()
+
+      const address = 0x4_1234_1234
+      const insnList = capstone.disasm(data, {
+        address,
+      })
+      expect(insnList[0]).toMatchObject({
+        address,
+      })
+    })
+
     it('count argument', () => {
       createCapstone()
 

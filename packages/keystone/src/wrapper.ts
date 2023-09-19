@@ -8,7 +8,7 @@ import {
 
 const METHODS_TYPES = defineMethods({
   ks_open: { returnType: 'number', argTypes: ['number', 'number', 'number'] },
-  ks_asm: { returnType: 'number', argTypes: ['number', 'string', 'number', 'number', 'number', 'number', 'number'] },
+  ks_asm: { returnType: 'number', argTypes: ['number', 'string', 'number', 'number', 'number', 'number'] },
   ks_free: { returnType: null, argTypes: ['number'] },
   ks_close: { returnType: 'number', argTypes: ['number'] },
   ks_option: { returnType: 'number', argTypes: ['number', 'number', 'number'] },
@@ -62,17 +62,11 @@ export class Keystone {
   }
 
   asm(data: string, options: {
-    address?: number,
+    address?: number | bigint,
   } = {}) {
     const {
       address = 0,
     } = options
-
-    if (address > 0xffffffff) {
-      // Since 64-bit addresses are generally not used,
-      // To avoid additional references to `BigInt`, we choose not to support them.
-      throw new Error('Address can only be 32-bit')
-    }
 
     const bytesPtrPtr = Keystone.call('malloc', POINTER_SIZE)
     const bytesLenPtr = Keystone.call('malloc', POINTER_SIZE)
@@ -82,9 +76,7 @@ export class Keystone {
       'ks_asm',
       this.handle,
       data,
-      address,
-      // HACK: placeholder for 64-bit address, see note above
-      null,
+      BigInt(address),
       bytesPtrPtr,
       bytesLenPtr,
       statCountPtr,

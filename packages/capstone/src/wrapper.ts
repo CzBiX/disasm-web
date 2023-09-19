@@ -13,7 +13,7 @@ import {
 
 const METHODS_TYPES = defineMethods({
   cs_open: { returnType: 'number', argTypes: ['number', 'number', 'number'] },
-  cs_disasm: { returnType: 'number', argTypes: ['number', 'array', 'number', 'number', 'number', 'number', 'number'] },
+  cs_disasm: { returnType: 'number', argTypes: ['number', 'array', 'number', 'number', 'number', 'number'] },
   cs_free: { returnType: null, argTypes: ['number', 'number'] },
   cs_close: { returnType: 'number', argTypes: ['number'] },
   cs_option: { returnType: 'number', argTypes: ['number', 'number', 'number'] },
@@ -44,7 +44,7 @@ let capstone: NativeModule
 
 export interface Insn {
   id: number;
-  address: number;
+  address: number | bigint;
   size: number;
   bytes: Uint8Array;
   mnemonic: string;
@@ -129,7 +129,7 @@ export class Capstone {
   }
 
   disasm(data: number[] | Uint8Array, options: {
-    address?: number,
+    address?: number | bigint,
     count?: number,
   } = {}) {
     const {
@@ -137,21 +137,13 @@ export class Capstone {
       count: maxCount = 0,
     } = options
 
-    if (address > 0xffffffff) {
-      // Since 64-bit addresses are generally not used,
-      // To avoid additional references to `BigInt`, we choose not to support them.
-      throw new Error('Address can only be 32-bit')
-    }
-
     const insnPtrPtr = Capstone.call('malloc', POINTER_SIZE)
     const count = Capstone.call(
       'cs_disasm',
       this.handle,
       data,
       data.length,
-      address,
-      // HACK: placeholder for 64-bit address, see note above
-      null,
+      BigInt(address),
       maxCount,
       insnPtrPtr,
     )
@@ -165,7 +157,11 @@ export class Capstone {
     const instructions: Insn[] = []
 
     for (let i = 0; i < count; i++) {
-      instructions.push(Capstone.readInsn(insnPtr + i * INSN_SIZE))
+      const insn = Capstone.readInsn(insnPtr + i * INSN_SIZE)
+      if (insn.address <= Number.MAX_SAFE_INTEGER) {
+        insn.address = Number(insn.address)
+      }
+      instructions.push(insn)
     }
 
     Capstone.call('cs_free', insnPtr, count)
