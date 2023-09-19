@@ -1,26 +1,12 @@
 import {
-  it, vi, expect, describe, afterEach,
+  it, expect, describe, afterEach,
 } from 'vitest'
 import { readFile } from 'fs/promises'
 import { loadCapstone, Capstone, Const } from '../src/index'
 
-function mockNodeFetch() {
-  vi.stubGlobal('fetch', async (url: string) => {
-    if (!url.startsWith('file://')) {
-      throw new Error(`Unsupported url: ${url}`)
-    }
-
-    const content = await readFile(url.substring(7))
-    return new Response(content, {
-      headers: {
-        'Content-Type': 'application/wasm',
-      },
-    })
-  })
-}
-mockNodeFetch()
-
-await loadCapstone()
+await loadCapstone({
+  wasmBinary: await readFile('./dist/capstone.wasm'),
+})
 
 it('version', () => {
   expect(Capstone.version()).toEqual({

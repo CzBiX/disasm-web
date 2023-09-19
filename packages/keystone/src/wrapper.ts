@@ -129,12 +129,12 @@ export class Keystone {
   }
 }
 
-async function factory() {
+async function factory(args?: Record<string, unknown>) {
   if (keystone) {
     return
   }
 
-  keystone = await getKeystone()
+  keystone = await getKeystone(args)
 }
 
 export default factory

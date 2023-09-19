@@ -11,6 +11,7 @@ import transformerVariantGroup from '@unocss/transformer-variant-group'
 export default defineConfig({
   build: {
     rollupOptions: {
+      external: ['module'],
       output: {
         manualChunks: {
           capstone: ['capstone-wasm'],

@@ -8,13 +8,4 @@ export default defineConfig({
       capstone: resolve(__dirname, './src/generated/capstone'),
     },
   },
-  build: {
-    lib: {
-      entry: resolve(__dirname, './src/index.ts'),
-      name: 'Capstone',
-    },
-    rollupOptions: {
-      external: ['module']
-    }
-  },
 })

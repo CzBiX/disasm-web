@@ -8,13 +8,4 @@ export default defineConfig({
       keystone: resolve(__dirname, './src/generated/keystone'),
     },
   },
-  build: {
-    lib: {
-      entry: resolve(__dirname, './src/index.ts'),
-      name: 'Keystone',
-    },
-    rollupOptions: {
-      external: ['module']
-    }
-  },
 })

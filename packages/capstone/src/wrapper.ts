@@ -211,12 +211,12 @@ export class Capstone {
   }
 }
 
-async function factory() {
+async function factory(args?: Record<string, unknown>) {
   if (capstone) {
     return
   }
 
-  capstone = await getCapstone()
+  capstone = await getCapstone(args)
 }
 
 export default factory

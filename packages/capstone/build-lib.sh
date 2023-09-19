@@ -4,7 +4,8 @@ set -eu
 
 EMSDK=~/emsdk
 EMSCRIPTEN=$EMSDK/upstream/emscripten
-GENERATED_DIR=$(realpath src/generated)
+CURRENT_DIR=$(realpath .)
+GENERATED_DIR=$CURRENT_DIR/src/generated
 OUTPUT_NAME=capstone
 
 ARCHS=(
@@ -52,8 +53,8 @@ EMSCRIPTEN_SETTINGS=(
   -s EXPORT_ES6
   -s WASM_BIGINT
   -s EXPORTED_FUNCTIONS=$EXPORTED_FUNCTIONS
+  -s FILESYSTEM=0
   -s EXPORTED_RUNTIME_METHODS=ccall,cwrap,getValue,UTF8ToString
-  -s INCOMING_MODULE_JS_API=[]
   -s EXPORT_NAME=$OUTPUT_NAME
   # -s ASSERTIONS
 )
@@ -70,8 +71,13 @@ $EMSCRIPTEN/emcmake cmake -B build ${BUILD_FLAGS[*]} -DCMAKE_BUILD_TYPE=Release
 cd build
 cmake --build . -j
 
-$EMSCRIPTEN/emcc lib$OUTPUT_NAME.a -Os --minify 0 ${EMSCRIPTEN_SETTINGS[*]} -o $OUTPUT_NAME.mjs
-cp $OUTPUT_NAME.mjs $OUTPUT_NAME.wasm $GENERATED_DIR
+echo "Building wasm"
 
+mkdir -p $CURRENT_DIR/dist
+$EMSCRIPTEN/emcc lib$OUTPUT_NAME.a -Os --minify 0 ${EMSCRIPTEN_SETTINGS[*]} -o $OUTPUT_NAME.mjs
+cp $OUTPUT_NAME.mjs $GENERATED_DIR
+cp $OUTPUT_NAME.wasm $CURRENT_DIR/dist
+
+echo "Building const"
 cd ../..
 ./generator.py const > "$GENERATED_DIR/const.ts"

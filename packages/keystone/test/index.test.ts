@@ -1,26 +1,12 @@
 import {
-  it, vi, expect, describe, afterEach,
+  it, expect, describe, afterEach,
 } from 'vitest'
 import { readFile } from 'fs/promises'
 import { loadKeystone, Keystone, Const } from '../src/index'
 
-function mockNodeFetch() {
-  vi.stubGlobal('fetch', async (url: string) => {
-    if (!url.startsWith('file://')) {
-      throw new Error(`Unsupported url: ${url}`)
-    }
-
-    const content = await readFile(url.substring(7))
-    return new Response(content, {
-      headers: {
-        'Content-Type': 'application/wasm',
-      },
-    })
-  })
-}
-mockNodeFetch()
-
-await loadKeystone()
+await loadKeystone({
+  wasmBinary: await readFile('./dist/keystone.wasm'),
+})
 
 it('version', () => {
   expect(Keystone.version()).toEqual({
@@ -71,22 +57,22 @@ ret`
 
     it('address', () => {
       const address = 0x1000
-      const data = `jmp 0x2000`
+      const data = 'jmp 0x2000'
 
       createKeystone()
 
-      expect(keystone.asm(data, {address})).toEqual(Uint8Array.from([
+      expect(keystone.asm(data, { address })).toEqual(Uint8Array.from([
         0xE9, 0xFB, 0x0F, 0x00, 0x00,
       ]))
     })
 
     it('64bit address', () => {
       const address = 0x4_1234_1234
-      const data = `jmp 0x412342234`
+      const data = 'jmp 0x412342234'
 
       createKeystone(Const.KS_ARCH_X86, Const.KS_MODE_64)
 
-      expect(keystone.asm(data, {address})).toEqual(Uint8Array.from([
+      expect(keystone.asm(data, { address })).toEqual(Uint8Array.from([
         0xE9, 0xFB, 0x0F, 0x00, 0x00,
       ]))
     })
