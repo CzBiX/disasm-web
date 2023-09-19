@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.9.4",
-    "capstone-wasm": "1.0.1",
-    "keystone-wasm": "1.0.3",
+    "capstone-wasm": "1.0.3",
+    "keystone-wasm": "1.0.4",
     "vue": "^3.2.37"
   },
   "devDependencies": {
