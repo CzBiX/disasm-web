@@ -170,7 +170,7 @@ function setAddress(event: Event) {
 }
 
 function formatHex(n: number) {
-  return `0x${n.toString(16)}`
+  return `0x${n.toString(16).toUpperCase()}`
 }
 </script>
 
@@ -187,7 +187,7 @@ const EXTRA_MODES = [
   },
   {
     key: ExtraModeKey.V8,
-    name: 'V8',
+    name: 'v8',
   },
 ]
 </script>
@@ -244,7 +244,7 @@ const EXTRA_MODES = [
         <input
           :disabled="disabled"
           :value="formatHex(modelValue.address)"
-          class="w-12ch text-right"
+          class="font-mono w-12ch text-right"
           @change="setAddress"
         >
       </label>
