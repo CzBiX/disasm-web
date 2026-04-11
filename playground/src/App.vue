@@ -22,8 +22,8 @@ const DEFAULT_OPTIONS: Readonly<Options> = Object.freeze({
     mode: '32',
   } as ArchMode,
   extraModes: [],
-  address: 0x1000,
-  asmMode: false,
+  address: 0x400000,
+  asmMode: true,
 })
 
 const options = useLocalStorage('options', {
@@ -34,7 +34,11 @@ let capstone: Capstone
 let keystone: Keystone
 
 const loaded = ref(false)
-const content = useLocalStorage('content', '55 8b ec 83 c4 0c c3')
+const content = useLocalStorage('content', `push ebp
+# comment
+nop
+ret
+`)
 const statusStr = ref<string>('Loading engine...')
 
 const disasmResult = ref<Insn[]>([])
