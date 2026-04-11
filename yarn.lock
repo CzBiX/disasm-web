@@ -2259,10 +2259,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unocss/reset@npm:0.44.3, @unocss/reset@npm:^0.44.3":
+"@unocss/reset@npm:0.44.3":
   version: 0.44.3
   resolution: "@unocss/reset@npm:0.44.3"
   checksum: 84f3c88d2d2d5333207553095c8477bbfdeba6bd7e9ae6627496d46b5fc9cc972f2bcc18fc4c67c788811c3bef3d8777d0e63b4a3ba0681b11c669c49c1f638b
+  languageName: node
+  linkType: hard
+
+"@unocss/reset@npm:^66.6.8":
+  version: 66.6.8
+  resolution: "@unocss/reset@npm:66.6.8"
+  checksum: b5222d5ad2acdda46624fcfdf6ccbdb343f8a00c587b24b2bc5fbcd87f9044f55a1b7ad4f0b03136901930aa703a3a4f5d7d8145347e2c4841bb46540e24656e
   languageName: node
   linkType: hard
 
@@ -5738,7 +5745,7 @@ __metadata:
     "@iconify-json/carbon": ^1.1.6
     "@types/node": ^18.0.3
     "@unocss/preset-icons": ^0.44.5
-    "@unocss/reset": ^0.44.3
+    "@unocss/reset": ^66.6.8
     "@unocss/transformer-variant-group": ^0.44.3
     "@vitejs/plugin-vue": ^4.0.0
     "@vueuse/core": ^8.9.4
