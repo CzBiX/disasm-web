@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, max-classes-per-file */
+ 
 
 import getKeystone from 'keystone'
 import * as Const from './generated/const'
@@ -112,12 +112,12 @@ export class Keystone {
   static version() {
     const int = this.call('ks_version')
 
-    /* eslint-disable no-bitwise */
+     
     return {
       major: int >> 8,
       minor: int & 0xff,
     }
-    /* eslint-enable no-bitwise */
+     
   }
 
   static archSupported(query: number): boolean {

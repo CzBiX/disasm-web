@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, max-classes-per-file */
+ 
 
 import getCapstone from 'capstone'
 import * as Const from './generated/const'
@@ -194,12 +194,12 @@ export class Capstone {
   static version() {
     const int = this.call('cs_version')
 
-    /* eslint-disable no-bitwise */
+     
     return {
       major: int >> 8,
       minor: int & 0xff,
     }
-    /* eslint-enable no-bitwise */
+     
   }
 
   static support(query: number): boolean {

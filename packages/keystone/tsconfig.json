@@ -1,7 +1,14 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": [
-    "src",
-    "test",
-  ],
+  "files": [],
+  "references": [
+    {
+      "path": "../../tsconfig.node.json"
+    },
+    {
+      "path": "../../tsconfig.app.json"
+    },
+    {
+      "path": "../../tsconfig.vitest.json"
+    }
+  ]
 }

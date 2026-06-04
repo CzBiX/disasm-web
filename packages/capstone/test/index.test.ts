@@ -72,7 +72,7 @@ describe('class', () => {
     })
 
     it('arm', () => {
-      // eslint-disable-next-line @typescript-eslint/no-shadow
+       
       const data = [0x03, 0x00, 0xa0, 0xe3, 0x00, 0x10, 0x80, 0xe5]
       createCapstone(Const.CS_ARCH_ARM, Const.CS_MODE_ARM)
 

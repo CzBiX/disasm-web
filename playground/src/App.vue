@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* eslint-disable no-bitwise */
+ 
 import {
   Const as CapstoneConst, Capstone, loadCapstone,
 } from 'capstone-wasm'

@@ -162,7 +162,7 @@ function setMode(event: Event) {
 }
 
 function setAddress(event: Event) {
-  // eslint-disable-next-line radix
+   
   const address = parseInt((event.target as HTMLInputElement).value)
   emitUpdate({
     address: Number.isNaN(address) ? 0x1000 : address,
