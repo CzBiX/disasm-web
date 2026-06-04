@@ -16,20 +16,20 @@
     "format": "oxfmt src/"
   },
   "dependencies": {
-    "@vueuse/core": "^13.0.0",
+    "@vueuse/core": "catalog:",
     "capstone-wasm": "1.0.3",
     "keystone-wasm": "1.0.4",
-    "vue": "^3.5.32"
+    "vue": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/carbon": "^1.2.8",
-    "@unocss/preset-icons": "^66.1.0",
-    "@unocss/reset": "^66.1.0",
-    "@unocss/transformer-variant-group": "^66.1.0",
-    "@vitejs/plugin-vue": "^6.0.6",
-    "unocss": "^66.1.0",
-    "unplugin-vue-components": "^28.4.1",
-    "vite": "^8.0.8",
-    "vite-plugin-pwa": "^1.0.0"
+    "@iconify-json/carbon": "catalog:",
+    "@unocss/preset-icons": "catalog:",
+    "@unocss/reset": "catalog:",
+    "@unocss/transformer-variant-group": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "unocss": "catalog:",
+    "unplugin-vue-components": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-pwa": "catalog:"
   }
 }
