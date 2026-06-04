@@ -17,8 +17,7 @@
     }
   },
   "scripts": {
-    "build": "pnpm rollup -c && pnpm run build:types",
-    "build:types": "tsup src --dts src/index.ts --dts-only",
+    "build": "tsdown",
     "dev": "tsc -w",
     "test": "vitest",
     "lint": "run-s lint:*",
@@ -26,13 +25,7 @@
     "lint:eslint": "eslint . --fix --cache"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "catalog:",
-    "@rollup/plugin-swc": "catalog:",
-    "@rollup/plugin-typescript": "catalog:",
-    "@rollup/plugin-url": "catalog:",
-    "@swc/core": "catalog:",
-    "rollup": "catalog:",
-    "tsup": "catalog:"
+    "tsdown": "catalog:"
   },
   "files": [
     "dist"
