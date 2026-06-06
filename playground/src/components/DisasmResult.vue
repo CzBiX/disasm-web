@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { toHexStringWithPrefix, toHexString } from '../utils/hex-string'
+import { toHexStringWithPrefix, toHexString, formatPretty } from '../utils/hex-string'
 import PanelToolbar from './ui/PanelToolbar.vue'
 import type { Insn } from '../types'
 
@@ -10,6 +10,7 @@ const props = defineProps<{
 
 const hexContent = computed(() => props.value.map((insn) => toHexString(insn.bytes)).join('\n'))
 const asmContent = computed(() => props.value.map((insn) => insn.str).join('\n'))
+const prettyContent = computed(() => formatPretty(props.value))
 
 function handleCopyHex() {
   navigator.clipboard.writeText(hexContent.value)
@@ -17,6 +18,10 @@ function handleCopyHex() {
 
 function handleCopyASM() {
   navigator.clipboard.writeText(asmContent.value)
+}
+
+function handleCopyPretty() {
+  navigator.clipboard.writeText(prettyContent.value)
 }
 
 defineExpose({
@@ -47,6 +52,11 @@ defineExpose({
         class="i-carbon:copy"
         title="Copy ASM"
         @click="handleCopyASM"
+      />
+      <button
+        class="i-carbon:text-align-left"
+        title="Copy Pretty"
+        @click="handleCopyPretty"
       />
     </PanelToolbar>
   </div>

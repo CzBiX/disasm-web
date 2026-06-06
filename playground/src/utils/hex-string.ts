@@ -30,3 +30,12 @@ export function toHexStringWithPrefix(n: number, length = 0): string {
   const result = n.toString(16).toUpperCase().padStart(length, '0')
   return `0x${result}`
 }
+
+export function formatPretty(insns: { address: number, bytes: Uint8Array, str: string }[]): string {
+  const maxHexLen = Math.max(...insns.map((insn) => toHexString(insn.bytes).length), 0)
+  return insns.map((insn) => {
+    const addr = toHexStringWithPrefix(insn.address, 8)
+    const hex = toHexString(insn.bytes).padEnd(maxHexLen)
+    return `${addr}  ${hex}  ${insn.str}`
+  }).join('\n')
+}
