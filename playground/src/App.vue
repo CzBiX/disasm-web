@@ -301,7 +301,7 @@ onBeforeMount(async () => {
     color-neutral-300
     children:(flex-1 border border-gray-500 p-2 bg-dark-100 m-2)"
     >
-      <div class="overflow-auto !p-0">
+      <div class="overflow-auto !p-0 flex flex-col">
         <PanelToolbar sticky>
           <button
             :class="copied ? 'i-carbon:checkmark !color-green-400' : 'i-carbon:share'"
@@ -309,8 +309,8 @@ onBeforeMount(async () => {
             @click="handleShare"
           />
         </PanelToolbar>
-        <div class="p-2">
-          <Textarea v-model="content" class="w-full bg-transparent outline-none" />
+        <div class="p-2 flex-1">
+          <Textarea v-model="content" class="w-full h-full bg-transparent outline-none" />
         </div>
       </div>
 

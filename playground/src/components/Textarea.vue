@@ -14,7 +14,7 @@ const content = useVModel(props, 'modelValue', emit)
 <template>
   <textarea
     v-model="content"
-    class="resize-none overflow-hidden"
+    class="resize-none overflow-hidden min-h-full"
     style="field-sizing: content"
     spellcheck="false"
   />
