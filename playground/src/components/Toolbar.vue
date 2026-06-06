@@ -172,6 +172,7 @@ function setAddress(event: Event) {
 function formatHex(n: number) {
   return `0x${n.toString(16).toUpperCase()}`
 }
+
 </script>
 
 <script lang="ts">
@@ -197,7 +198,7 @@ const EXTRA_MODES = [
     <h1 class="text-xl">
       Disasm Playground
     </h1>
-    <div class="flex gap-4 all-[input]:bg-dark-300 all-[select]:bg-dark-300 all-[select]:w-24">
+    <div class="flex gap-4 all-[input]:bg-dark-300 all-[select]:bg-dark-300 all-[select]:w-24 all-[select]:text-right">
       <label class="flex items-center">
         Disasm
         <Switch
@@ -263,7 +264,7 @@ const EXTRA_MODES = [
         </label>
       </template>
     </div>
-    <div class="ml-auto flex">
+    <div class="ml-auto flex gap-2">
       <a
         href="https://github.com/CzBiX/disasm-web"
         target="_blank"

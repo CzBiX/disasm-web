@@ -11,7 +11,9 @@ import { onBeforeMount, ref, watch } from 'vue'
 import { useLocalStorage, watchThrottled } from '@vueuse/core'
 import { ArchMode, ExtraModeKey, Options } from './components/Toolbar.vue'
 import Textarea from './components/Textarea.vue'
+import PanelToolbar from './components/ui/PanelToolbar.vue'
 import { parseHexString } from './utils/hex-string'
+import { decodeShareState, encodeShareState } from './utils/share'
 import DisasmResult from './components/DisasmResult.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
 import type { Insn } from './types'
@@ -39,6 +41,15 @@ const content = useLocalStorage('content', `push ebp
 nop
 ret
 `)
+const hashData = window.location.hash.slice(1)
+if (hashData) {
+  const shared = decodeShareState(hashData)
+  if (shared) {
+    options.value = shared.options
+    content.value = shared.content
+  }
+}
+
 const statusStr = ref<string>('Loading engine...')
 
 const disasmResult = ref<Insn[]>([])
@@ -106,6 +117,19 @@ function asm() {
   }
 
   disasmResult.value = insns
+}
+
+const copied = ref(false)
+let copiedTimer: ReturnType<typeof setTimeout>
+
+function handleShare() {
+  const hash = encodeShareState(options.value, content.value)
+  window.location.hash = hash
+  navigator.clipboard.writeText(window.location.href).catch(() => {})
+
+  copied.value = true
+  clearTimeout(copiedTimer)
+  copiedTimer = setTimeout(() => { copied.value = false }, 1500)
 }
 
 function updateResult() {
@@ -277,7 +301,18 @@ onBeforeMount(async () => {
     color-neutral-300
     children:(flex-1 border border-gray-500 p-2 bg-dark-100 m-2)"
     >
-      <Textarea v-model="content" />
+      <div class="overflow-auto !p-0">
+        <PanelToolbar sticky>
+          <button
+            :class="copied ? 'i-carbon:checkmark !color-green-400' : 'i-carbon:share'"
+            title="Share"
+            @click="handleShare"
+          />
+        </PanelToolbar>
+        <div class="p-2">
+          <Textarea v-model="content" class="w-full bg-transparent outline-none" />
+        </div>
+      </div>
 
       <DisasmResult
         ref="disasmPanel"

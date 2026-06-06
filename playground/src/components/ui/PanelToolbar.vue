@@ -1,6 +1,15 @@
+<script setup lang="ts">
+defineProps<{
+  sticky?: boolean
+}>()
+</script>
+
 <template>
   <div
-    class="flex absolute top-0 right-0
+    :class="sticky
+      ? 'sticky top-0 ml-auto w-fit -mb-10'
+      : 'absolute top-0 right-0'"
+    class="flex z-10
       bg-dark-300 p-2 rounded-lb-2 gap-2
       opacity-20 hover:opacity-80 transition-opacity
       children:(color-neutral-500 transition-color p-3) hover:children:color-neutral-100"
