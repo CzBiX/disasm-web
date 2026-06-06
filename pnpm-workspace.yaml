@@ -15,6 +15,7 @@ catalog:
   unplugin-vue-components: ^28.4.1
   vite: ^8.0.8
   vite-plugin-pwa: ^1.0.0
+  workbox-window: ^7.4.1
 
 onlyBuiltDependencies:
   - esbuild

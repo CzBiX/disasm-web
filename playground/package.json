@@ -30,6 +30,7 @@
     "unocss": "catalog:",
     "unplugin-vue-components": "catalog:",
     "vite": "catalog:",
-    "vite-plugin-pwa": "catalog:"
+    "vite-plugin-pwa": "catalog:",
+    "workbox-window": "catalog:"
   }
 }

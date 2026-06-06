@@ -42,6 +42,9 @@ catalogs:
     vue:
       specifier: ^3.5.32
       version: 3.5.35
+    workbox-window:
+      specifier: ^7.4.1
+      version: 7.4.1
 
 importers:
 
@@ -156,6 +159,9 @@ importers:
       vite-plugin-pwa:
         specifier: 'catalog:'
         version: 1.3.0(vite@8.0.16(@types/node@24.12.4)(jiti@2.7.0)(terser@5.48.0))(workbox-build@7.4.1)(workbox-window@7.4.1)
+      workbox-window:
+        specifier: 'catalog:'
+        version: 7.4.1
 
 packages:
 

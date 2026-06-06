@@ -30,14 +30,12 @@ export default defineConfig({
     UnoCSS(),
     VitePWA({
       manifest: false,
-      // TODO: re-enable workbox once vite-plugin-pwa fully supports vite 8 / rolldown
       workbox: {
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         globPatterns: [
           '**/*.{js,css,html,png,jpg,jpeg,svg,ico,json,wasm}',
         ],
       },
-      disable: true,
     }),
   ],
 })
