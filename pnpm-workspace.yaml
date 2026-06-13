@@ -5,7 +5,7 @@ packages:
 catalog:
   tsdown: ^0.22.2
   '@vueuse/core': ^14.3.0
-  vue: ^3.5.32
+  vue: ^3.5.38
   '@iconify-json/carbon': ^1.2.8
   '@unocss/preset-icons': ^66.1.0
   '@unocss/reset': ^66.1.0
