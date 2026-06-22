@@ -9,7 +9,7 @@ catalog:
   '@iconify-json/carbon': ^1.2.8
   '@unocss/preset-icons': ^66.1.0
   '@unocss/reset': ^66.7.2
-  '@unocss/transformer-variant-group': ^66.1.0
+  '@unocss/transformer-variant-group': ^66.7.2
   '@vitejs/plugin-vue': ^6.0.6
   unocss: ^66.1.0
   unplugin-vue-components: ^28.4.1
