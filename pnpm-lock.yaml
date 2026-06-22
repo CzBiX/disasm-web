@@ -16,8 +16,8 @@ catalogs:
       specifier: ^66.7.2
       version: 66.7.2
     '@unocss/transformer-variant-group':
-      specifier: ^66.1.0
-      version: 66.7.0
+      specifier: ^66.7.2
+      version: 66.7.2
     '@vitejs/plugin-vue':
       specifier: ^6.0.6
       version: 6.0.7
@@ -143,7 +143,7 @@ importers:
         version: 66.7.2
       '@unocss/transformer-variant-group':
         specifier: 'catalog:'
-        version: 66.7.0
+        version: 66.7.2
       '@vitejs/plugin-vue':
         specifier: 'catalog:'
         version: 6.0.7(vite@8.0.16(@types/node@24.12.4)(jiti@2.7.0)(terser@5.48.0))(vue@3.5.38(typescript@6.0.3))
@@ -1704,6 +1704,9 @@ packages:
   '@unocss/core@66.7.0':
     resolution: {integrity: sha512-j6MFMx5C3iIwW4T4hVbh+30fKWgSGkmS3bCcdjlfqM88lRT+dHFBN9nkfNOBJT6e6IHN9415nexuzcQvTjJXxw==}
 
+  '@unocss/core@66.7.2':
+    resolution: {integrity: sha512-NNnhm9IVPEZ34drwztREP+mq1rio0L4Tp0u247qBKxJJWYec1+I+FTRsw7EvtukZKvr56YAxFA1qbBV+LjyV+Q==}
+
   '@unocss/extractor-arbitrary-variants@66.7.0':
     resolution: {integrity: sha512-iHMlXmb8aGtYgPQ8o3D4rMz9DKOqSp8g/LWvEoiM7arSjJF9jMpcpYlqZXzkg1mSQX23TRW76Qxj1gyI4lRd9w==}
 
@@ -1757,6 +1760,9 @@ packages:
 
   '@unocss/transformer-variant-group@66.7.0':
     resolution: {integrity: sha512-2TXYLowPMXszGNYRXAWzQ1G9nGP6EYv9XeJvwNvnf0w9J6qOQVVtW/ZViIz61Kk083c06cZ6nai8pCBnc8aPAw==}
+
+  '@unocss/transformer-variant-group@66.7.2':
+    resolution: {integrity: sha512-CO0CoYRn96wLm+cIICuNrv96cfzEkBHc/OmTYcHzlheyZRfGWPWlPpazMr2rlm5bve986akAxe2HSBqdaRf04w==}
 
   '@unocss/vite@66.7.0':
     resolution: {integrity: sha512-7J8Mk9M1j55S3bXL87/yHOspnuAaftQWbc3HjCH0/sXNLZJZnlpmUue3EtT5Ez+PE01T3DK1D9Xxn/MvtdvXtA==}
@@ -5214,6 +5220,8 @@ snapshots:
 
   '@unocss/core@66.7.0': {}
 
+  '@unocss/core@66.7.2': {}
+
   '@unocss/extractor-arbitrary-variants@66.7.0':
     dependencies:
       '@unocss/core': 66.7.0
@@ -5304,6 +5312,10 @@ snapshots:
   '@unocss/transformer-variant-group@66.7.0':
     dependencies:
       '@unocss/core': 66.7.0
+
+  '@unocss/transformer-variant-group@66.7.2':
+    dependencies:
+      '@unocss/core': 66.7.2
 
   '@unocss/vite@66.7.0(vite@8.0.16(@types/node@24.12.4)(jiti@2.7.0)(terser@5.48.0))':
     dependencies:
