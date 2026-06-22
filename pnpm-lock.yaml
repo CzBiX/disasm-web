@@ -13,8 +13,8 @@ catalogs:
       specifier: ^66.1.0
       version: 66.7.0
     '@unocss/reset':
-      specifier: ^66.1.0
-      version: 66.7.0
+      specifier: ^66.7.2
+      version: 66.7.2
     '@unocss/transformer-variant-group':
       specifier: ^66.1.0
       version: 66.7.0
@@ -140,7 +140,7 @@ importers:
         version: 66.7.0
       '@unocss/reset':
         specifier: 'catalog:'
-        version: 66.7.0
+        version: 66.7.2
       '@unocss/transformer-variant-group':
         specifier: 'catalog:'
         version: 66.7.0
@@ -1740,8 +1740,8 @@ packages:
   '@unocss/preset-wind@66.7.0':
     resolution: {integrity: sha512-K2cCgQawl4GzFyI9almN4jZ33OJNI6U7WxZ9s7D5bivZYfHPaStLTPffNxWlmawwUZF0qpH0S+S7H745ZzgajQ==}
 
-  '@unocss/reset@66.7.0':
-    resolution: {integrity: sha512-auMYYTWXrE1n7lPoT1TFyGhmrBlgMdn9GgvypBSxtdi9Jg6Rz4qdNngEbJeSnqnjfRawx247TJJdNKiigSZ29g==}
+  '@unocss/reset@66.7.2':
+    resolution: {integrity: sha512-dKRbpBicfchatvqK2wqfX8gtNTCf+2pFdXBNDC0Cl2PZ8QCVMtCaHTOTSyruM0Pw7aqST4SlPkF5f8x7aZZL0w==}
 
   '@unocss/rule-utils@66.7.0':
     resolution: {integrity: sha512-DMJIiey/m+xr0hpSbxFhSbKlC3e7QsuwdAEdgMmIM7pEcu/AEMl7oH198QYX9880P2X0hy5iFE6UCWx9CwGAXQ==}
@@ -5278,7 +5278,7 @@ snapshots:
       '@unocss/core': 66.7.0
       '@unocss/preset-wind3': 66.7.0
 
-  '@unocss/reset@66.7.0': {}
+  '@unocss/reset@66.7.2': {}
 
   '@unocss/rule-utils@66.7.0':
     dependencies:
