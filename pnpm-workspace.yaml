@@ -12,7 +12,7 @@ catalog:
   '@unocss/transformer-variant-group': ^66.1.0
   '@vitejs/plugin-vue': ^6.0.6
   unocss: ^66.1.0
-  unplugin-vue-components: ^28.4.1
+  unplugin-vue-components: ^32.1.0
   vite: ^8.0.8
   vite-plugin-pwa: ^1.0.0
   workbox-window: ^7.4.1
