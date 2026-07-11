@@ -10,8 +10,8 @@ catalogs:
       specifier: ^1.2.8
       version: 1.2.22
     '@unocss/preset-icons':
-      specifier: ^66.1.0
-      version: 66.7.0
+      specifier: ^66.7.5
+      version: 66.7.5
     '@unocss/reset':
       specifier: ^66.7.2
       version: 66.7.2
@@ -137,7 +137,7 @@ importers:
         version: 1.2.22
       '@unocss/preset-icons':
         specifier: 'catalog:'
-        version: 66.7.0
+        version: 66.7.5
       '@unocss/reset':
         specifier: 'catalog:'
         version: 66.7.2
@@ -1752,9 +1752,6 @@ packages:
 
   '@unocss/preset-attributify@66.7.5':
     resolution: {integrity: sha512-1Oi1Cp81pqYJwG3h4+OlP5A0FKyaa07MFBXaXc4Yr3faiTbsI8SKj2TqnZCb+NQvBsEqslEd+jKXGZ3lKzCVOQ==}
-
-  '@unocss/preset-icons@66.7.0':
-    resolution: {integrity: sha512-y6I2qZ2cwNAS2XRBig1lHzdFG9qTnZM/mx3fL3XnURnEYZird4uidLyWOyUGcdy1kMot1QcYVb0D/s9NgrEOgQ==}
 
   '@unocss/preset-icons@66.7.5':
     resolution: {integrity: sha512-ZsxadWnGGtHdANTikuMnjkQaT1qwUFJHZBF4fzVsPMnUiiKGs8rzXukwM9w3Gi9ontM7nbG2FYi9clWETSlpFg==}
@@ -5347,12 +5344,6 @@ snapshots:
   '@unocss/preset-attributify@66.7.5':
     dependencies:
       '@unocss/core': 66.7.5
-
-  '@unocss/preset-icons@66.7.0':
-    dependencies:
-      '@iconify/utils': 3.1.3
-      '@unocss/core': 66.7.0
-      ofetch: 1.5.1
 
   '@unocss/preset-icons@66.7.5':
     dependencies:
