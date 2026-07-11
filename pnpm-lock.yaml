@@ -16,8 +16,8 @@ catalogs:
       specifier: ^66.7.2
       version: 66.7.2
     '@unocss/transformer-variant-group':
-      specifier: ^66.1.0
-      version: 66.7.0
+      specifier: ^66.7.5
+      version: 66.7.5
     '@vitejs/plugin-vue':
       specifier: ^6.0.6
       version: 6.0.7
@@ -143,7 +143,7 @@ importers:
         version: 66.7.2
       '@unocss/transformer-variant-group':
         specifier: 'catalog:'
-        version: 66.7.0
+        version: 66.7.5
       '@vitejs/plugin-vue':
         specifier: 'catalog:'
         version: 6.0.7(vite@8.0.16(@types/node@24.12.4)(jiti@2.7.0)(terser@5.49.0))(vue@3.5.38(typescript@6.0.3))
@@ -1738,9 +1738,6 @@ packages:
   '@unocss/config@66.7.5':
     resolution: {integrity: sha512-dkPl9glhEahJ+Xoja5ZseKKnH+vZaeaKQzg8b0otcKcPPNrHQgu1nu3QgfeOjnXOGrjZIotHwUeVtt4ZA2Skgg==}
 
-  '@unocss/core@66.7.0':
-    resolution: {integrity: sha512-j6MFMx5C3iIwW4T4hVbh+30fKWgSGkmS3bCcdjlfqM88lRT+dHFBN9nkfNOBJT6e6IHN9415nexuzcQvTjJXxw==}
-
   '@unocss/core@66.7.5':
     resolution: {integrity: sha512-UdJb8MiMywcau8QrWEVgUAz0kvoFHyR+sACwYCgmBh/BpKJGyR/zw/Ys3wvysbm0f+i/20VGBex/QQxYVlzdyQ==}
 
@@ -1794,9 +1791,6 @@ packages:
 
   '@unocss/transformer-directives@66.7.5':
     resolution: {integrity: sha512-VMJApXXOwlDubkW+cNMmOkfxLefFupJr+yU23gGYUB2NPsuVltc8H5CDM0gfVebpeL5CUW05evxzEAk2wsju+Q==}
-
-  '@unocss/transformer-variant-group@66.7.0':
-    resolution: {integrity: sha512-2TXYLowPMXszGNYRXAWzQ1G9nGP6EYv9XeJvwNvnf0w9J6qOQVVtW/ZViIz61Kk083c06cZ6nai8pCBnc8aPAw==}
 
   '@unocss/transformer-variant-group@66.7.5':
     resolution: {integrity: sha512-iDmP3mM8J+IxuQf5Uh33zsi528xnGxTpKRJ0c+LCrqBTTkR2tZr4aCzNmJ0g29Js2yEOsyNXRRc8BNTuvgn0AA==}
@@ -5325,8 +5319,6 @@ snapshots:
       consola: 3.4.2
       unconfig: 7.5.0
 
-  '@unocss/core@66.7.0': {}
-
   '@unocss/core@66.7.5': {}
 
   '@unocss/extractor-arbitrary-variants@66.7.5':
@@ -5415,10 +5407,6 @@ snapshots:
       '@unocss/core': 66.7.5
       '@unocss/rule-utils': 66.7.5
       css-tree: 3.2.1
-
-  '@unocss/transformer-variant-group@66.7.0':
-    dependencies:
-      '@unocss/core': 66.7.0
 
   '@unocss/transformer-variant-group@66.7.5':
     dependencies:
