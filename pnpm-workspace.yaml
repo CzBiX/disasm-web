@@ -10,7 +10,7 @@ catalog:
   '@unocss/preset-icons': ^66.7.5
   '@unocss/reset': ^66.7.2
   '@unocss/transformer-variant-group': ^66.1.0
-  '@vitejs/plugin-vue': ^6.0.6
+  '@vitejs/plugin-vue': ^6.0.8
   unocss: ^66.7.5
   unplugin-vue-components: ^32.1.0
   vite: ^8.0.8
