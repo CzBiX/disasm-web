@@ -3,7 +3,7 @@ packages:
   - playground
 
 catalog:
-  tsdown: ^0.22.2
+  tsdown: ^0.22.9
   '@vueuse/core': ^14.3.0
   vue: ^3.5.38
   '@iconify-json/carbon': ^1.2.8
